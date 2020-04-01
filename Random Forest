@@ -1,0 +1,61 @@
+Random Forest is a versatile machine learning method capable of performing both regression and classification tasks. It also undertakes
+dimensional reduction methods, treats missing values, outlier values and other essential steps of data exploration, and does a fairly good
+job. It is a type of ensemble learning method, where a group of weak models combine to form a powerful model, read more about Random 
+Forest .
+
+Example (importing and creating object):
+
+# Import ensemble module from sklearn
+import sklearn.ensemble
+
+# Create object of RandomForestClassifier
+model=sklearn.ensemble.RandomForestClassifier()
+
+Let’s make first Random Forest model. Similar to Logistic regression and Decision Tree, here we also first select the input features,
+train model and finally perform prediction on test data set.
+
+Ok, time for you to build your first Random Forest model! The pre processed trainmodified and testmodifed data are available in your workspace.
+
+#train_modified and test_modified already loaded in the workspace
+#Import module for Random Forest
+import sklearn.ensemble
+
+# Select three predictors Credit_History, Education and Gender
+predictors =['Credit_History','Education','Gender']
+
+# Converting predictors and outcome to numpy array
+x_train = train_modified[predictors].values
+y_train = train_modified['Loan_Status'].values
+
+# Model Building
+model = sklearn.ensemble.RandomForestClassifier()
+model.fit(x_train, y_train)
+
+# Converting predictors and outcome to numpy array
+x_test = test_modified[predictors].values
+
+#Predict Output
+predicted= model.predict(x_test)
+
+#Reverse encoding for predicted outcome
+predicted = number.inverse_transform(predicted)
+
+#Store it to test dataset
+test_modified['Loan_Status']=predicted
+
+#Output file to make submission
+test_modified.to_csv("Submission1.csv",columns=['Loan_ID','Loan_Status'])
+
+One of the benefits of Random forest is the power of handle large data set with higher dimensionality. It can handle thousands of input
+variables and identify most significant variables so it is considered as one of the dimensionality reduction methods. Further, the model
+outputs the importance of the variables, which can be a very handy feature.
+
+featimp = pd.Series(model.feature_importances_, index=predictors).sort_values(ascending=False)
+
+print (featimp)
+
+I have selected all the features available in the train data set and model it using random forest:
+
+predictors=['ApplicantIncome', 'CoapplicantIncome', 'Credit_History','Dependents', 'Education', 'Gender', 'LoanAmount',
+            'Loan_Amount_Term', 'Married', 'Property_Area', 'Self_Employed', 'TotalIncome','Log_TotalIncome']
+            
