@@ -1,0 +1,12 @@
+The model development cycle goes through various stages, starting from data collection to model building. Most of us admit that data
+exploration needs more attention to unleashing the hidden story of data but before exploring the data to understand relationships (in
+variables), It’s always recommended to perform hypothesis generation. (To know more about hypothesis generation, refer to this link
+http://discuss.analyticsvidhya.com/t/why-and-when-is-hypothesis-generation-important/2109).
+
+It is important that you spend time thinking about the given problem and gaining the domain knowledge. So, how does it help?
+
+This practice usually helps in building better features later on, which are not biased by the data available in the dataset. This is a
+crucial step which usually improves a model’s accuracy.
+
+At this stage, you are expected to apply structured thinking to the problem i.e. a thinking process which takes into consideration all the
+possible aspects of a particular problem.
