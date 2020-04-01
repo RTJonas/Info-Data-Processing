@@ -1,0 +1,49 @@
+Decision trees are mostly used in classification problems. It works for both categorical and continuous input and output variables. In
+this technique, we split the population or sample into two or more homogeneous sets (or sub-populations) based on most significant
+splitter / differentiator in input variables, read more about Decision Tree .
+
+Example (importing it and creating object):
+
+# Import tree module of sklearn
+import sklearn.tree
+
+# Create object of DecisionTreeClassifier
+model = sklearn.tree.DecisionTreeClassifier()
+
+Let’s make first Decision Tree model. Similar to Logistic regression, we first select the input features, train our model and finally
+perform prediction on test data set.
+
+Ok! time for you to build your first Decision Tree model! The pre processed trainmodified and testmodifed data are available in your
+workspace.
+
+#train_modified and test_modified already loaded in the workspace
+#Import module for Decision tree
+import sklearn.tree
+
+# Select three predictors Credit_History, Education and Gender
+predictors =['Credit_History','Education','Gender']
+
+# Converting predictors and outcome to numpy array
+x_train = train_modified[predictors].values
+y_train = train_modified['Loan_Status'].values
+
+# Model Building
+model = sklearn.tree.DecisionTreeClassifier()
+model.fit(x_train, y_train)
+
+
+# Converting predictors and outcome to numpy array
+x_test = test_modified[predictors].values
+
+#Predict Output
+predicted= model.predict(x_test)
+
+#Reverse encoding for predicted outcome
+predicted = number.inverse_transform(predicted)
+
+#Store it to test dataset
+test_modified['Loan_Status']=predicted
+
+#Output file to make submission
+test_modified.to_csv("Submission1.csv",columns=['Loan_ID','Loan_Status'])
+
