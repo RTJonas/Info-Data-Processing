@@ -1,0 +1,29 @@
+Prediction and submission to DataHack
+To upload a submission to DataHack, you need to predict the loan approval rate for the observations in the test set. This can be done
+using ".predict()" method with logistic regression object (model). To extract the test features we will need to create a numpy array of
+input features of test data set in the same way as we did when training the model for training data.
+
+Next, you need to make sure your output is in line with the submission requirements of DataHack: a csv file with exactly 367 entries and
+two columns: LoanID and LoanStatus. Then create a csv file using to_csv() method from Pandas.
+
+Example:
+
+#test_modified already loaded in the workspace
+
+# Select three predictors Credit_History, Education and Gender
+predictors =['Credit_History','Education','Gender']
+
+# Converting predictors and outcome to numpy array
+x_test = test_modified[predictors].values
+
+#Predict Output
+predicted= model.predict(x_test)
+
+#Reverse encoding for predicted outcome
+predicted = number.inverse_transform(predicted)
+
+#Store it to test dataset
+test_modified['Loan_Status']=predicted
+
+#Output file to make submission
+test_modified.to_csv("Submission1.csv",columns=['Loan_ID','Loan_Status'])
