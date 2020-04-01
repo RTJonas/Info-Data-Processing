@@ -1,0 +1,46 @@
+Logistic Regression is a classification algorithm. It is used to predict a binary outcome (1 / 0, Yes / No, True / False) given a set of
+independent variables. To represent binary / categorical outcome, we use dummy variables. You can also think of logistic regression as a
+special case of linear regression when the outcome variable is categorical, where we are using log of odds as the dependent variable.
+
+In simple words, it predicts the probability of occurrence of an event by fitting data to a logit function, read more about Logistic
+Regression .
+
+LogisticRegression() function is part of linear_model module of sklearn and is used to create logistic regression
+
+Reference: Mathematical working and implementation from scratch for Logistic regression.
+
+Example:
+
+# Import linear model of sklearn
+import sklearn.linear_model
+
+# Create object of Logistic Regression
+model=sklearn.linear_model.LogisticRegression()
+
+Let’s build our first Logistic Regression model. One way would be to take all the variables into the model, but this might result in
+overfitting (don’t worry if you’re unaware of this terminology yet). In simple words, taking all variables might result in the model
+understanding complex relations specific to the data and will not generalize well.
+We can easily make some intuitive hypothesis to set the ball rolling. The chances of getting a loan will be higher for:
+•	Applicants having a credit history
+•	Applicants with higher applicant and co-applicant income
+•	Applicants with higher education level
+•	Properties in urban areas with high growth perspectives
+Ok, time for you to build your first logistics regression model! The pre processed trainmodified and testmodifed data are available in
+your workspace.
+
+Example:
+#train_modified and test_modified already loaded in the workspace
+#Import module for Logistic regression
+import sklearn.linear_model
+
+# Select three predictors Credit_History, Education and Gender
+predictors =['Credit_History','Education','Gender']
+
+# Converting predictors and outcome to numpy array
+x_train = train_modified[predictors].values
+y_train = train_modified['Loan_Status'].values
+
+# Model Building
+model = sklearn.linear_model.LogisticRegression()
+model.fit(x_train, y_train)
+
